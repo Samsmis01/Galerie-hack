@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEX-TECH</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e1e2f, #2d2d44);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .login-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    .input-field {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 5px;
+      padding: 0.75rem;
+      color: #fff;
+    }
+    .input-field::placeholder {
+      color: #ccc;
+    }
+    .btn-ingresar {
+      background: linear-gradient(90deg, #6b46c1, #d53f8c);
+      border: none;
+      border-radius: 5px;
+      padding: 0.75rem 1.5rem;
+      color: #fff;
+      font-weight: bold;
+    }
+    .btn-ingresar:hover {
+      opacity: 0.9;
+    }
+    .social-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .social-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <div class="text-center mb-6">
+      <svg class="w-12 h-12 mx-auto text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 110-12 6 6 0 010 12zm-1-7H6v2h3v3h2v-3h3V9h-3V6H9v3z" clip-rule="evenodd" />
+      </svg>
+      <h2 class="text-2xl font-bold text-purple-400 mt-2">HEXTECH</h2>
+      <p class="text-gray-400 text-sm mt-1">Ingresa a tu cuenta para acceder al contenido exclusivo</p>
+    </div>
+    <form>
+      <div class="mb-4">
+        <label class="block text-gray-300 text-sm mb-1">Correo Electrónico</label>
+        <input type="email" placeholder="tucorreo@ejemplo.com" class="input-field w-full" value="tucorreo@ejemplo.com">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-300 text-sm mb-1">Contraseña</label>
+        <input type="password" placeholder="********" class="input-field w-full" value="********">
+      </div>
+      <div class="flex justify-between items-center mb-4 text-gray-400 text-xs">
+        <label class="flex items-center">
+          <input type="checkbox" class="mr-1">
+          Recordarme
+        </label>
+        <a href="#" class="hover:text-purple-400">¿Olvidaste tu contraseña?</a>
+      </div>
+      <button type="submit" class="btn-ingresar w-full mb-4">Ingresa</button>
+      <div class="text-center text-gray-400 text-xs mb-4">o ingresa con</div>
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="social-btn"><span class="text-xl">G</span></a>
+        <a href="#" class="social-btn"><span class="text-xl"></span></a>
+        <a href="#" class="social-btn"><span class="text-xl">🐦</span></a>
+      </div>
+      <p class="text-center text-gray-400 text-xs mt-4">¿No tienes cuenta? <a href="#" class="text-purple-400 hover:underline">Regístrate ahora</a></p>
+    </form>
+  </div>
+</body>
+</html>

@@ -188,12 +188,13 @@ def run_server():
 def show_banner():
     os.system('clear' if os.name == 'posix' else 'cls')
     print(f"""{Colors.GREEN}
-    ██████╗ ███████╗███╗   ██╗ █████╗ ██████╗ ██████╗ 
-    ██╔══██╗██╔════╝████╗  ██║██╔══██╗██╔══██╗██╔══██╗
-    ██████╔╝█████╗  ██╔██╗ ██║███████║██████╔╝██║  ██║
-    ██╔══██╗██╔══╝  ██║╚██╗██║██╔══██║██╔══██╗██║  ██║
-    ██║  ██║███████╗██║ ╚████║██║  ██║██║  ██║██████╔╝
-    ╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ 
+      ██╗  ██╗███████╗██╗  ██╗████████╗███████╗ ██████╗██╗  ██╗
+██║  ██║██╔════╝╚██╗██╔╝╚══██╔══╝██╔════╝██╔════╝██║  ██║
+███████║█████╗   ╚███╔╝    ██║   █████╗  ██║     ███████║
+██╔══██║██╔══╝   ██╔██╗    ██║   ██╔══╝  ██║     ██╔══██║
+██║  ██║███████╗██╔╝ ██╗   ██║   ███████╗╚██████╗██║  ██║
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝╚═╝  ╚═╝
+
     {Colors.END}
     [✓] Version: 2.2.0
     [✓] GitHub: SAMSMIS01
@@ -232,9 +233,9 @@ def start_serveo():
             print(f"{Colors.YELLOW}[!] Le port {LOCAL_PORT} est déjà utilisé{Colors.END}")
             return None
 
-        # Lance le tunnel Serveo avec timeout
+        # Lance le tunnel Serveo avec la commande fournie
         process = subprocess.Popen(
-            ["timeout", "30", "ssh", "-o", "StrictHostKeyChecking=no", "-R", f"80:localhost:{LOCAL_PORT}", "serveo.net"],
+            ["ssh", "-R", "80:localhost:3000", "serveo.net"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True
@@ -245,14 +246,19 @@ def start_serveo():
         for _ in range(30):  # 30 secondes max
             line = process.stderr.readline()
             if "Forwarding" in line:
-                url = line.strip().split()[-1]
-                print(f"\n{Colors.GREEN}╔══════════════════════════════════╗")
-                print(f"║  Lien Serveo généré avec succès  ║")
-                print(f"║  {url.ljust(32)}  ║")
-                print(f"╚══════════════════════════════════╝{Colors.END}")
-                print(f"\n{Colors.YELLOW}[*] Ce lien sera actif pendant 30 minutes")
-                print(f"[*] Gardez ce terminal ouvert{Colors.END}")
-                return url
+                parts = line.strip().split()
+                for part in parts:
+                    if part.startswith("http://"):
+                        url = part
+                        break
+                if url:
+                    print(f"\n{Colors.GREEN}╔══════════════════════════════════╗")
+                    print(f"║  Lien Serveo généré avec succès  ║")
+                    print(f"║  {url.ljust(32)}  ║")
+                    print(f"╚══════════════════════════════════╝{Colors.END}")
+                    print(f"\n{Colors.YELLOW}[*] Ce lien sera actif tant que le tunnel est maintenu")
+                    print(f"[*] Gardez ce terminal ouvert{Colors.END}")
+                    return url
             sleep(1)
 
         if not url:

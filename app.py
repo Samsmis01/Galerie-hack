@@ -15,7 +15,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'collected_data'
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB
 app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
-app.config['SECRET_KEY'] = 'votre_cle_secrete_complexe'  # Changez ceci en prod
+app.config['SECRET_KEY'] = 'A2g8#!kL9$pX@z5R%3q6*JmNvB4wD7yE'  # Changez ceci en prod
 
 # Authentification
 auth = HTTPBasicAuth()
